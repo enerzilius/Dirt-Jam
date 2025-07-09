@@ -6,7 +6,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
 shader = ExtResource("2_vvh5c")
-shader_parameter/skyColor = Color(0.734978, 0.333546, 0.34892, 1)
+shader_parameter/skyColor = Color(0.649439, 0.61759, 0.803518, 1)
+shader_parameter/horizonColor = Color(0.914538, 0.81765, 0.858851, 1)
 
 [sub_resource type="Sky" id="Sky_jnlp7"]
 sky_material = SubResource("ShaderMaterial_28aoi")
@@ -15,6 +16,7 @@ sky_material = SubResource("ShaderMaterial_28aoi")
 background_mode = 2
 background_color = Color(0.176471, 0.52549, 0.788235, 1)
 sky = SubResource("Sky_jnlp7")
+ambient_light_source = 3
 tonemap_white = 1.68
 glow_normalized = true
 glow_intensity = 1.75
