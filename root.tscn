@@ -1,16 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://bs3wao3xrtlmq"]
+[gd_scene load_steps=9 format=3 uid="uid://bs3wao3xrtlmq"]
 
 [ext_resource type="Script" uid="uid://btn8i0m76hx2y" path="res://Scripts/Camera/debug_camera_controller.gd" id="1_hekff"]
 [ext_resource type="Script" uid="uid://7n58awc2ols0" path="res://Scripts/draw_terrain.gd" id="2_pyidc"]
+[ext_resource type="Shader" uid="uid://dnhu2mdch2wln" path="res://Scripts/SkyShader.gdshader" id="2_vvh5c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
+shader = ExtResource("2_vvh5c")
+shader_parameter/skyColor = Color(0.734978, 0.333546, 0.34892, 1)
+
+[sub_resource type="Sky" id="Sky_jnlp7"]
+sky_material = SubResource("ShaderMaterial_28aoi")
 
 [sub_resource type="Environment" id="Environment_7owt0"]
-background_mode = 1
-background_color = Color(0.239216, 0.239216, 0.239216, 1)
+background_mode = 2
+background_color = Color(0.176471, 0.52549, 0.788235, 1)
+sky = SubResource("Sky_jnlp7")
 tonemap_white = 1.68
 glow_normalized = true
 glow_intensity = 1.75
 glow_strength = 1.65
 glow_bloom = 0.33
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0632
+volumetric_fog_sky_affect = 0.23
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_vvh5c"]
 resource_local_to_scene = false
@@ -27,8 +39,8 @@ wireframe = false
 noise_seed = 135
 zoom = 139.5
 offset = Vector3(-200, 95.655, -326.08)
-gradient_rotation = 68.645
-octave_count = 12
+gradient_rotation = -75.355
+octave_count = 10
 rotation = -26.99
 angular_variance = Vector2(-15, 15)
 initial_amplitude = 0.739
@@ -38,18 +50,19 @@ frequency_variance = Vector2(-0.085, 0.115)
 height_scale = 90.9
 slope_damping = 0.155
 slope_threshold = Vector2(0.84, 0.98)
-low_slope_color = Color(0.366477, 0.373384, 0.0777902, 1)
-high_slope_color = Color(0.1, 0.05835, 0.049, 1)
-ambient_light = Color(0.192, 0.2712, 0.3, 1)
+low_slope_color = Color(0.971823, 0.980446, 0.876464, 1)
+high_slope_color = Color(0.261416, 0.247975, 0.211873, 1)
+ambient_light = Color(0.465802, 0.537657, 0.582805, 1)
 metadata/_custom_type_script = "uid://7n58awc2ols0"
 
 [sub_resource type="Compositor" id="Compositor_1i1cu"]
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vvh5c"), null])
 
 [node name="Root" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.587785, 0.0338782, 0.808308, 8.73461e-08, -0.999123, 0.0418757, 0.809017, -0.0246138, -0.587269, 0, 0, 0)
+transform = Transform3D(-0.50227, -0.547923, -0.668958, -0.305313, 0.836166, -0.455642, 0.809017, -0.0246137, -0.587269, -0.428894, -1.52588e-05, -0.309891)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.60854)
