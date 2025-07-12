@@ -74,6 +74,10 @@ class_name DrawTerrainMesh extends CompositorEffect
 ## Additive light adjustment
 @export var ambient_light : Color = Color.DIM_GRAY
 
+@export var fog_color : Color = Color.DIM_GRAY
+@export var min_fog_dist : float = 1.0
+@export var max_fog_dist : float = 100.0
+
 
 var transform : Transform3D
 var light : DirectionalLight3D
@@ -540,6 +544,7 @@ const source_vertex = "
 			mat2 m2i = inverse(m2);
 
 			for(int i = 0; i < int(_Octaves); ++i) {
+				
 				vec3 n = perlin_noise2D(pos);
 				
 				// add height scaled by current amplitude
@@ -822,6 +827,9 @@ const source_wire_fragment = "
 			float _FrequencyVarianceUpperBound;
 			float _SlopeDamping;
 			vec4 _AmbientLight;
+			vec4 _FogColor;
+			float _MinFog;
+			float _MaxFog;
 		};
 		
 		layout(location = 2) in vec4 a_Color;

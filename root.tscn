@@ -6,8 +6,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
 shader = ExtResource("2_vvh5c")
-shader_parameter/skyColor = Color(0.649439, 0.61759, 0.803518, 1)
-shader_parameter/horizonColor = Color(0.914538, 0.81765, 0.858851, 1)
+shader_parameter/skyColor = Color(0.50957, 0.66665, 0.799672, 1)
+shader_parameter/horizonColor = Color(0.798129, 0.861822, 0.875234, 1)
 
 [sub_resource type="Sky" id="Sky_jnlp7"]
 sky_material = SubResource("ShaderMaterial_28aoi")
@@ -22,6 +22,11 @@ glow_normalized = true
 glow_intensity = 1.75
 glow_strength = 1.65
 glow_bloom = 0.33
+fog_enabled = true
+fog_mode = 1
+fog_sun_scatter = 0.81
+fog_density = 1.0
+fog_aerial_perspective = 1.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0632
 volumetric_fog_sky_affect = 0.23
@@ -39,7 +44,7 @@ side_length = 400
 mesh_scale = 0.5
 wireframe = false
 noise_seed = 135
-zoom = 139.5
+zoom = 136.4
 offset = Vector3(-200, 95.655, -326.08)
 gradient_rotation = -75.355
 octave_count = 10
@@ -54,7 +59,10 @@ slope_damping = 0.155
 slope_threshold = Vector2(0.84, 0.98)
 low_slope_color = Color(0.971823, 0.980446, 0.876464, 1)
 high_slope_color = Color(0.261416, 0.247975, 0.211873, 1)
-ambient_light = Color(0.465802, 0.537657, 0.582805, 1)
+ambient_light = Color(0.416645, 0.494725, 0.54763, 1)
+fog_color = Color(0.754125, 0.686717, 0.722283, 1)
+min_fog_dist = null
+max_fog_dist = 100.0
 metadata/_custom_type_script = "uid://7n58awc2ols0"
 
 [sub_resource type="Compositor" id="Compositor_1i1cu"]
@@ -64,10 +72,10 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vvh5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.50227, -0.547923, -0.668958, -0.305313, 0.836166, -0.455642, 0.809017, -0.0246137, -0.587269, -0.428894, -1.52588e-05, -0.309891)
+transform = Transform3D(-0.547044, 0.333968, -0.767599, 0.215023, 0.942263, 0.256721, 0.809017, -0.0246137, -0.58727, -0.428894, -1.52588e-05, -0.309891)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.60854)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.464867, -2.59271, 2.56702)
 script = ExtResource("1_hekff")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
