@@ -6,8 +6,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
 shader = ExtResource("2_vvh5c")
-shader_parameter/skyColor = Color(0.50957, 0.66665, 0.799672, 1)
-shader_parameter/horizonColor = Color(0.798129, 0.861822, 0.875234, 1)
+shader_parameter/skyColor = Color(0.943186, 0.645929, 0.909157, 1)
+shader_parameter/horizonColor = Color(1, 0.72549, 0.701961, 1)
 
 [sub_resource type="Sky" id="Sky_jnlp7"]
 sky_material = SubResource("ShaderMaterial_28aoi")
@@ -24,12 +24,16 @@ glow_strength = 1.65
 glow_bloom = 0.33
 fog_enabled = true
 fog_mode = 1
-fog_sun_scatter = 0.81
+fog_light_color = Color(1, 1, 1, 1)
+fog_light_energy = 0.0
+fog_sun_scatter = 1.0
 fog_density = 1.0
-fog_aerial_perspective = 1.0
+fog_aerial_perspective = 0.875
+fog_sky_affect = 0.611
+fog_depth_end = 4000.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0632
-volumetric_fog_sky_affect = 0.23
+volumetric_fog_sky_affect = 0.16
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_vvh5c"]
 resource_local_to_scene = false
@@ -60,8 +64,8 @@ slope_threshold = Vector2(0.84, 0.98)
 low_slope_color = Color(0.971823, 0.980446, 0.876464, 1)
 high_slope_color = Color(0.261416, 0.247975, 0.211873, 1)
 ambient_light = Color(0.416645, 0.494725, 0.54763, 1)
-fog_color = Color(0.754125, 0.686717, 0.722283, 1)
-min_fog_dist = null
+fog_color = Color(0.411765, 0.411765, 0.411765, 1)
+min_fog_dist = 1.0
 max_fog_dist = 100.0
 metadata/_custom_type_script = "uid://7n58awc2ols0"
 

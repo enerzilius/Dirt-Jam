@@ -74,6 +74,7 @@ class_name DrawTerrainMesh extends CompositorEffect
 ## Additive light adjustment
 @export var ambient_light : Color = Color.DIM_GRAY
 
+@export_group("Fog Settings")
 @export var fog_color : Color = Color.DIM_GRAY
 @export var min_fog_dist : float = 1.0
 @export var max_fog_dist : float = 100.0
@@ -340,7 +341,6 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(ambient_light.g)
 	buffer.push_back(ambient_light.b)
 	buffer.push_back(1.0)
-	
 
 	# All of our settings are stored in a single uniform buffer, certainly not the best decision, but it's easy to work with
 	var buffer_bytes : PackedByteArray = PackedFloat32Array(buffer).to_byte_array()
@@ -625,6 +625,7 @@ const source_fragment = "
 			float _FrequencyVarianceUpperBound;
 			float _SlopeDamping;
 			vec4 _AmbientLight;
+			
 		};
 		
 		// These are the variables that we expect to receive from the vertex shader
