@@ -75,10 +75,10 @@ class_name DrawTerrainMesh extends CompositorEffect
 @export var ambient_light : Color = Color.DIM_GRAY
 
 @export_group("Fog Settings")
-@export var fog_color : Color = Color.DIM_GRAY
+
+@export var fog_color : Color = Color(0.83, 0.88, 0.94)
 @export var min_fog_dist : float = 1.0
 @export var max_fog_dist : float = 100.0
-
 
 var transform : Transform3D
 var light : DirectionalLight3D
@@ -341,6 +341,14 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(ambient_light.g)
 	buffer.push_back(ambient_light.b)
 	buffer.push_back(1.0)
+	buffer.push_back(1.0)
+	buffer.push_back(1.0)
+	buffer.push_back(fog_color.r)
+	buffer.push_back(fog_color.g)
+	buffer.push_back(fog_color.b)
+	buffer.push_back(1.0)
+	buffer.push_back(min_fog_dist)
+	buffer.push_back(max_fog_dist)
 
 	# All of our settings are stored in a single uniform buffer, certainly not the best decision, but it's easy to work with
 	var buffer_bytes : PackedByteArray = PackedFloat32Array(buffer).to_byte_array()
@@ -433,6 +441,9 @@ const source_vertex = "
 			float _FrequencyVarianceUpperBound;
 			float _SlopeDamping;
 			vec4 _AmbientLight;
+			vec4 _FogColor;
+			float _MinFog;
+			float _MaxFog;
 		};
 		
 		// This is the vertex data layout that we defined in initialize_render after line 198
@@ -625,7 +636,9 @@ const source_fragment = "
 			float _FrequencyVarianceUpperBound;
 			float _SlopeDamping;
 			vec4 _AmbientLight;
-			
+			vec4 _FogColor;
+			float _MinFog;
+			float _MaxFog;
 		};
 		
 		// These are the variables that we expect to receive from the vertex shader
@@ -798,7 +811,8 @@ const source_fragment = "
 			vec4 lit = clamp(direct_light + ambient_light, vec4(0), vec4(1));
 
 			// Convert from linear rgb to srgb for proper color output, ideally you'd do this as some final post processing effect because otherwise you will need to revert this gamma correction elsewhere
-			frag_color = pow(lit, vec4(2.2));
+			//frag_color = pow(lit, vec4(2.2));
+			frag_color = _FogColor;
 		}
 		"
 
