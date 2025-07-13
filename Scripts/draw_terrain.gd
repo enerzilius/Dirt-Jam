@@ -1,7 +1,6 @@
 @tool
 class_name DrawTerrainMesh extends CompositorEffect
 
-
 ## Regenerate mesh data and recompile shaders TODO: Separate mesh generation and shader recompilation
 @export var regenerate : bool = true
 
@@ -100,6 +99,7 @@ var p_wire_index_array : RID
 var p_shader : RID
 var p_wire_shader : RID
 var clear_colors := PackedColorArray([Color.DARK_BLUE])
+var cam_pos : Vector3
 
 func _init():
 	effect_callback_type = CompositorEffect.EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
@@ -278,6 +278,7 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 		initialize_render_pipelines(rd.framebuffer_get_format(p_framebuffer))
 
 	var buffer = Array()
+	
 
 	# Assemble the model, view, and projection matrices for vertex world space -> clip space conversion (watch PS1 video if you care about how this works but otherwise it just works(tm))
 	var model = transform
@@ -348,6 +349,12 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(min_fog_dist)
 	buffer.push_back(max_fog_dist)
 	buffer.push_back(1.0)
+	buffer.push_back(1.0)
+	
+	cam_pos = render_scene_data.get_cam_transform().origin-Vector3(0.766693, -1.66313, -1.06099)
+	buffer.push_back(cam_pos.x)
+	buffer.push_back(cam_pos.y)
+	buffer.push_back(cam_pos.z)
 	buffer.push_back(1.0)
 
 	# All of our settings are stored in a single uniform buffer, certainly not the best decision, but it's easy to work with
@@ -442,8 +449,9 @@ const source_vertex = "
 			float _SlopeDamping;
 			vec4 _AmbientLight;
 			vec4 _FogColor;
-			float _MinFog;
-			float _MaxFog;
+			float _FogStart;
+			float _FogEnd;
+			vec3 _CamPos;
 		};
 		
 		// This is the vertex data layout that we defined in initialize_render after line 198
@@ -637,8 +645,9 @@ const source_fragment = "
 			float _SlopeDamping;
 			vec4 _AmbientLight;
 			vec4 _FogColor;
-			float _MinFog;
-			float _MaxFog;
+			float _FogStart;
+			float _FogEnd;
+			vec3 _CamPos;
 		};
 		
 		// These are the variables that we expect to receive from the vertex shader
@@ -780,6 +789,16 @@ const source_fragment = "
 
 			return vec3(height, grad);
 		}
+		
+		//float linearFog(){
+		//	float dist = length()
+		//}
+		
+		//float calcFogFactor(){
+		//	float fogFactor = linearFog();
+		//	
+		//	return fogFactor;
+		//}
 		
 		void main() {
 			// Recalculate initial noise sampling position same as vertex shader

@@ -78,7 +78,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 transform = Transform3D(-0.547044, 0.333968, -0.767599, 0.215023, 0.942263, 0.256721, 0.809017, -0.0246137, -0.58727, -0.428894, -1.52588e-05, -0.309891)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.464867, -2.59271, 2.56702)
 script = ExtResource("1_hekff")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
