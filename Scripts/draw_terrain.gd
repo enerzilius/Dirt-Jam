@@ -791,7 +791,12 @@ const source_fragment = "
 		}
 		
 		//float linearFog(){
-		//	float dist = length()
+		//	float dist = length(pos - _CamPos);
+		//	float fogRange = _FogEnd - _FogStart;
+		// 	float fogDist = _FogEnd - dist;
+		//	float fogFactor = fogDist - fogRange;
+		//	fogFactor = clamp(fogFactor, 0.0, 1.0);
+		//	return  fogFactor
 		//}
 		
 		//float calcFogFactor(){
