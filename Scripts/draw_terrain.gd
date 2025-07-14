@@ -790,20 +790,15 @@ const source_fragment = "
 			return vec3(height, grad);
 		}
 		
-		//float linearFog(){
-		//	float dist = length(pos - _CamPos);
-		//	float fogRange = _FogEnd - _FogStart;
-		// 	float fogDist = _FogEnd - dist;
-		//	float fogFactor = fogDist - fogRange;
-		//	fogFactor = clamp(fogFactor, 0.0, 1.0);
-		//	return  fogFactor
-		//}
+		float linearFog(){
+			float dist = length(pos - _CamPos);
+			float fogRange = _FogEnd - _FogStart;
+		 	float fogDist = _FogEnd - dist;
+			float fogFactor = fogDist / fogRange;
+			fogFactor = clamp(fogFactor, 0.0, 1.0);
 		
-		//float calcFogFactor(){
-		//	float fogFactor = linearFog();
-		//	
-		//	return fogFactor;
-		//}
+			return fogFactor;
+		}
 		
 		void main() {
 			// Recalculate initial noise sampling position same as vertex shader
@@ -833,9 +828,18 @@ const source_fragment = "
 
 			// Combine lighting values, clip to prevent pixel values greater than 1 which would really really mess up the gamma correction below
 			vec4 lit = clamp(direct_light + ambient_light, vec4(0), vec4(1));
-
+			
+			vec4 tempColor = pow(lit, vec4(2.2));
+			
+			float fogFactor = 0.0;
+			
+			if(_FogColor != vec4(0.0)){
+				fogFactor = linearFog();
+				tempColor = mix(_FogColor, tempColor, fogFactor);
+			}
+			
 			// Convert from linear rgb to srgb for proper color output, ideally you'd do this as some final post processing effect because otherwise you will need to revert this gamma correction elsewhere
-			frag_color = pow(lit, vec4(2.2));
+			frag_color = tempColor;
 		}
 		"
 
@@ -866,8 +870,9 @@ const source_wire_fragment = "
 			float _SlopeDamping;
 			vec4 _AmbientLight;
 			vec4 _FogColor;
-			float _MinFog;
-			float _MaxFog;
+			float _FogStart;
+			float _FogEnd;
+			vec3 _CamPos;
 		};
 		
 		layout(location = 2) in vec4 a_Color;
