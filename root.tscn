@@ -6,8 +6,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
 shader = ExtResource("2_vvh5c")
-shader_parameter/skyColor = Color(0.943186, 0.645929, 0.909157, 1)
-shader_parameter/horizonColor = Color(1, 0.72549, 0.701961, 1)
+shader_parameter/skyColor = Color(0.31982, 0.527251, 1, 1)
+shader_parameter/horizonColor = Color(0.658131, 0.771447, 1, 1)
 
 [sub_resource type="Sky" id="Sky_jnlp7"]
 sky_material = SubResource("ShaderMaterial_28aoi")
@@ -60,12 +60,12 @@ frequency_variance = Vector2(-0.085, 0.115)
 height_scale = 90.9
 slope_damping = 0.155
 slope_threshold = Vector2(0.84, 0.98)
-low_slope_color = Color(0.971823, 0.980446, 0.876464, 1)
-high_slope_color = Color(0.261416, 0.247975, 0.211873, 1)
+low_slope_color = Color(0.83, 0.88, 0.94, 1)
+high_slope_color = Color(0.137255, 0.12549, 0.121569, 1)
 ambient_light = Color(0.697419, 0.760989, 0.804687, 1)
-fog_color = Color(0.83, 0.88, 0.94, 1)
+fog_color = Color(0.41171, 0.597145, 1, 1)
 min_fog_dist = 50.0
-max_fog_dist = 130.0
+max_fog_dist = 150.0
 metadata/_custom_type_script = "uid://7n58awc2ols0"
 
 [sub_resource type="Compositor" id="Compositor_1i1cu"]
