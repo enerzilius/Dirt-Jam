@@ -1,0 +1,38 @@
+
+#version 450
+
+layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
+	mat4 MVP; // 64 -> 0
+	vec3 _LightDirection; // 16 -> 64
+	float _GradientRotation;
+	float _NoiseRotation; // 4 -> 80
+	float _Amplitude; // 4 -> 84
+	vec2 _AngularVariance; // 8 -> 88
+	float _Frequency; // 4 -> 96
+	float _Octaves; // 4 -> 100
+	float _AmplitudeDecay; // 4 -> 104
+	float _NormalStrength; // 4  -> 108
+	vec3 _Offset; // 16 -> 112 -> 128
+	float _Seed;
+	float _InitialAmplitude;
+	float _Lacunarity;
+	vec2 _SlopeRange;
+	vec4 _LowSlopeColor;
+	vec4 _HighSlopeColor;
+	float _FrequencyVarianceLowerBound;
+	float _FrequencyVarianceUpperBound;
+	float _SlopeDamping;
+	vec4 _AmbientLight;
+	vec4 _FogColor;
+	float _FogStart;
+	float _FogEnd;
+	vec3 _CamPos;
+};
+
+layout(location = 2) in vec4 a_Color;
+
+layout(location = 0) out vec4 frag_color;
+
+void main(){
+	frag_color = vec4(1, 0, 0, 1);
+}
