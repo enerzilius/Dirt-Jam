@@ -82,6 +82,7 @@ class_name DrawTerrainMesh extends CompositorEffect
 
 var transform : Transform3D
 var light : DirectionalLight3D
+var cam : Camera3D
 
 var rd : RenderingDevice
 var p_framebuffer : RID
@@ -101,6 +102,7 @@ var p_shader : RID
 var p_wire_shader : RID
 var clear_colors := PackedColorArray([Color.DARK_BLUE])
 var cam_pos : Vector3
+var cam_angle: Vector3
 
 func read_file(path : String): 
 	var f: String = FileAccess.get_file_as_string(path)
@@ -116,6 +118,7 @@ func _init():
 	var tree := Engine.get_main_loop() as SceneTree
 	var root : Node = tree.edited_scene_root if Engine.is_editor_hint() else tree.current_scene
 	if root: light = root.get_node_or_null('DirectionalLight3D')
+	if root: cam = root.get_node_or_null('Camera3D')
 
 # Compiles... the shader...?
 func compile_shader(vertex_shader : String, fragment_shader : String) -> RID:
@@ -360,10 +363,24 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(1.0)
 	buffer.push_back(1.0)
 	
-	cam_pos = render_scene_data.get_cam_transform().origin-Vector3(0.766693, -1.66313, -1.06099)
+	if not cam:
+		var tree := Engine.get_main_loop() as SceneTree
+		var root : Node = tree.edited_scene_root if Engine.is_editor_hint() else tree.current_scene
+		cam = root.get_node_or_null('Camera3D')
+		if not cam:
+			push_error("No camera source detected please put a Camera3D into the scene thank you")
+	else:
+		cam_pos = cam.position
+		cam_angle = cam.rotation_degrees.normalized()
+		
 	buffer.push_back(cam_pos.x)
 	buffer.push_back(cam_pos.y)
 	buffer.push_back(cam_pos.z)
+	buffer.push_back(1.0)
+	
+	buffer.push_back(cam_angle.x)
+	buffer.push_back(cam_angle.y)
+	buffer.push_back(cam_angle.z)
 	buffer.push_back(1.0)
 
 	# All of our settings are stored in a single uniform buffer, certainly not the best decision, but it's easy to work with

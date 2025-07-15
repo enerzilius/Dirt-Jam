@@ -27,6 +27,7 @@ layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
 	float _FogStart;
 	float _FogEnd;
 	vec3 _CamPos;
+	vec3 _CamDirection;
 };
 
 // These are the variables that we expect to receive from the vertex shader
@@ -204,18 +205,17 @@ void main() {
 	// Direct light cares about the diffuse result, ambient light does not
 	vec4 direct_light = albedo * ndotl;
 	vec4 ambient_light = albedo * _AmbientLight;
+	
+	vec3 halfway_dir = normalize(_LightDirection + _CamDirection);
+	vec4 spec_highlight = pow(max(dot(normal, halfway_dir), 0.0), 200.0) * vec4(0.7, 0.7, 0.8, 0.0);
 
 	// Combine lighting values, clip to prevent pixel values greater than 1 which would really really mess up the gamma correction below
-	vec4 lit = clamp(direct_light + ambient_light, vec4(0), vec4(1));
+	vec4 lit = clamp(direct_light + ambient_light + spec_highlight, vec4(0), vec4(1));
 	
 	vec4 tempColor = pow(lit, vec4(2.2));
 	
-	float fogFactor = 0.0;
-	
-	if(_FogColor != vec4(0.0)){
-		fogFactor = linearFog();
-		tempColor = mix(_FogColor, tempColor, fogFactor);
-	}
+	float fogFactor = linearFog();
+	tempColor = mix(_FogColor, tempColor, fogFactor);
 	
 	// Convert from linear rgb to srgb for proper color output, ideally you'd do this as some final post processing effect because otherwise you will need to revert this gamma correction elsewhere
 	frag_color = tempColor;

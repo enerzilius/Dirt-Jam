@@ -27,6 +27,7 @@ layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
 	float _FogStart;
 	float _FogEnd;
 	vec3 _CamPos;
+	vec3 _CamDirection;
 };
 
 layout(location = 2) in vec4 a_Color;

@@ -51,7 +51,7 @@ noise_seed = 135
 zoom = 141.6
 offset = Vector3(0, 100, 0)
 gradient_rotation = -91.465
-octave_count = 10
+octave_count = 13
 rotation = -26.99
 angular_variance = Vector2(-15, 15)
 initial_amplitude = 0.739
@@ -61,8 +61,8 @@ frequency_variance = Vector2(-0.085, 0.115)
 height_scale = 90.9
 slope_damping = 0.155
 slope_threshold = Vector2(0.84, 0.98)
-low_slope_color = Color(0.83, 0.88, 0.94, 1)
-high_slope_color = Color(0.137255, 0.12549, 0.121569, 1)
+low_slope_color = Color(0.200344, 0.385353, 9.62615e-08, 1)
+high_slope_color = Color(0.16, 0.1, 0.1, 1)
 ambient_light = Color(0.697419, 0.760989, 0.804687, 1)
 fog_color = Color(0.41171, 0.597145, 1, 1)
 min_fog_dist = 90.0
@@ -79,6 +79,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 transform = Transform3D(-0.547044, 0.333968, -0.767599, 0.215023, 0.942263, 0.256721, 0.809017, -0.0246137, -0.58727, -0.428894, -1.52588e-05, -0.309891)
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3058, -14.7329, -0.155865)
 script = ExtResource("1_hekff")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
