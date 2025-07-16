@@ -27,7 +27,6 @@ layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
 	float _FogStart;
 	float _FogEnd;
 	vec3 _CamPos;
-	vec3 _CamDirection;
 };
 
 // These are the variables that we expect to receive from the vertex shader
@@ -206,8 +205,9 @@ void main() {
 	vec4 direct_light = albedo * ndotl;
 	vec4 ambient_light = albedo * _AmbientLight;
 	
-	vec3 halfway_dir = normalize(_LightDirection + _CamDirection);
-	vec4 spec_highlight = pow(max(dot(normal, halfway_dir), 0.0), 50) * vec4(0.7, 0.7, 0.8, 1.0) * 0.1;
+	vec3 camDirection = normalize(_CamPos - pos);
+	vec3 halfway_dir = normalize(_LightDirection + camDirection);
+	vec4 spec_highlight = pow(max(dot(normal, halfway_dir), 0.0), 50) * vec4(0.7, 0.7, 0.8, 1.0) * 0.d;
 
 	// Combine lighting values, clip to prevent pixel values greater than 1 which would really really mess up the gamma correction below
 	vec4 lit = clamp(direct_light + ambient_light + spec_highlight, vec4(0), vec4(1));
