@@ -1,16 +1,16 @@
 # Godot Terrain Generator
 
-by Acerola
+Made by Acerola, 
+Altered by Eber 
 
 Implements simple perlin noise based fractional brownian motion as a Godot compositor effect for use as a base or reference in my event [Dirt Jam](https://itch.io/jam/acerola-dirt-jam/).
 
-![example](./example.png)
-
-## How To Use
-
-* Create a new godot project with a 3D root node
-* Add `DirectionalLight3D`, `Camera3D`, and `WorldEnvironment` nodes to the scene
-* Add a `Compositor` to the `WorldEnvironment` node
-* Add an element to the `Compositor Effects` array
-* Instantiate a new `DrawTerrainMesh` in the element field
-* Click the box to open the settings list for the terrain, hover over settings to get an explanation for what it does!
+## Modifications List:
+- **Importable Shader Files**; 
+- **Fog**:
+	- The fog was made on the Fragment Shader, with the simple (yet, nice looking) Linear Fog technique. 
+![alt text](example_fog.png)
+- **Specular Highlights**:
+	-  The lighting model used was Blinn-Phong for a better approximation of lighting, based on *learnopengl*'s chapter about it, available on: [Advanced Lighting](https://learnopengl.com/Advanced-Lighting/Advanced-Lighting).
+![alt text](specular_example.png)
+## TODO: detail how the items are made
