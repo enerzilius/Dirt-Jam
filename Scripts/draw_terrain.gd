@@ -150,13 +150,14 @@ func initialize_render(framebuffer_format : int):
 	# Generate plane vertices on the xz plane
 	for x in side_length:
 		for z in side_length:
+			# LOD vai ser feito aqui!!
 			var xz : Vector2 = Vector2(x - half_length, z - half_length) * mesh_scale
 
 			var pos : Vector3 = Vector3(xz.x, 0, xz.y)
 
 			# Vertex color is not used but left as a demonstration for adding more vertex attributes
 			var color : Vector4 = Vector4(randf(), randf(), randf(), 1)
-
+		
 			# For some reason godot doesn't make it easy to append vectors to arrays
 			for i in 3: vertex_buffer.push_back(pos[i])
 			for i in 4: vertex_buffer.push_back(color[i])
