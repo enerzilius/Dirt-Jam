@@ -104,7 +104,18 @@ var clear_colors := PackedColorArray([Color.DARK_BLUE])
 var cam_pos : Vector3
 var cam_angle: Vector3
 
-func read_file(path : String): 
+func mod(vec: Vector3) -> Vector3:
+	var module: Vector3
+	for i in 3:
+		if(vec[i] < 0): module[i] = -vec[i]
+		else: module[i] = vec[i]
+	return module
+	
+func dist(a: Vector3, b: Vector3) -> float:
+	return ((a[0]-b[0])**2+(a[2]-b[2])**2)**0.5
+		
+
+func read_file(path : String) -> String: 
 	var f: String = FileAccess.get_file_as_string(path)
 	return f
 	
@@ -152,12 +163,12 @@ func initialize_render(framebuffer_format : int):
 		for z in side_length:
 			# LOD vai ser feito aqui!!
 			var xz : Vector2 = Vector2(x - half_length, z - half_length) * mesh_scale
-
+			
 			var pos : Vector3 = Vector3(xz.x, 0, xz.y)
 
 			# Vertex color is not used but left as a demonstration for adding more vertex attributes
 			var color : Vector4 = Vector4(randf(), randf(), randf(), 1)
-		
+			
 			# For some reason godot doesn't make it easy to append vectors to arrays
 			for i in 3: vertex_buffer.push_back(pos[i])
 			for i in 4: vertex_buffer.push_back(color[i])

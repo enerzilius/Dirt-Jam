@@ -194,7 +194,20 @@ void main() {
 
 	// Blend between the two terrain colors
 	vec4 albedo = mix(_LowSlopeColor, _HighSlopeColor, vec4(material_blend_factor));
-
+	float spec_power = 0.088;
+	float spec_factor = 50;
+	
+	//mexer com isso depois
+	//	albedo = _LowSlopeColor;	
+	//	spec_factor = 20;
+	//	spec_power = 1.0;
+	//} 
+	//else{
+	//	albedo = mix(_LowSlopeColor, _HighSlopeColor, vec4(material_blend_factor));
+	//	spec_power = 0.088;
+	//	spec_factor = 50;
+	//}
+	
 	// This is the actual surface normal vector
 	vec3 normal = normalize(vec3(-n.y, 1, -n.z));
 
@@ -207,7 +220,7 @@ void main() {
 	
 	vec3 camDirection = normalize(_CamPos - pos);
 	vec3 halfway_dir = normalize(_LightDirection + camDirection);
-	vec4 spec_highlight = pow(max(dot(normal, halfway_dir), 0.0), 50) * vec4(0.7, 0.7, 0.8, 1.0) * 0.088;
+	vec4 spec_highlight = pow(max(dot(normal, halfway_dir), 0.0), spec_factor) * vec4(0.7, 0.7, 0.8, 1.0) * spec_power;
 
 	// Combine lighting values, clip to prevent pixel values greater than 1 which would really really mess up the gamma correction below
 	vec4 lit = clamp(direct_light + ambient_light + spec_highlight, vec4(0), vec4(1));
