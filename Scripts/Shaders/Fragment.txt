@@ -230,6 +230,5 @@ void main() {
 	float fogFactor = linearFog();
 	tempColor = mix(_FogColor, tempColor, fogFactor);
 	
-	// Convert from linear rgb to srgb for proper color output, ideally you'd do this as some final post processing effect because otherwise you will need to revert this gamma correction elsewhere
 	frag_color = tempColor;
 }
