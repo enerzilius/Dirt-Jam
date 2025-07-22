@@ -8,7 +8,7 @@
 shader = ExtResource("2_vvh5c")
 shader_parameter/skyColor = Color(0.277072, 0.466096, 0.72539, 1)
 shader_parameter/horizonColor = Color(1, 0.576471, 0.494118, 1)
-shader_parameter/sun_radius = 0.04
+shader_parameter/sun_radius = 0.18
 
 [sub_resource type="Sky" id="Sky_jnlp7"]
 sky_material = SubResource("ShaderMaterial_28aoi")

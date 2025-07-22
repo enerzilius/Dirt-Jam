@@ -84,6 +84,8 @@ var transform : Transform3D
 var light : DirectionalLight3D
 var cam : Camera3D
 
+var screen_size: Vector2i = DisplayServer.screen_get_size();
+
 var rd : RenderingDevice
 var p_framebuffer : RID
 var cached_framebuffer_format : int
@@ -250,7 +252,6 @@ func initialize_render(framebuffer_format : int):
 
 	p_index_array = rd.index_array_create(p_index_buffer, 0, index_buffer.size())
 	p_wire_index_array = rd.index_array_create(p_wire_index_buffer, 0, wire_index_buffer.size())
-	
 
 	initialize_render_pipelines(framebuffer_format)
 
@@ -301,7 +302,6 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 		initialize_render_pipelines(rd.framebuffer_get_format(p_framebuffer))
 
 	var buffer = Array()
-	
 
 	# Assemble the model, view, and projection matrices for vertex world space -> clip space conversion (watch PS1 video if you care about how this works but otherwise it just works(tm))
 	var model = transform
@@ -388,6 +388,8 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(cam_pos.y)
 	buffer.push_back(cam_pos.z)
 	buffer.push_back(1.0)
+	
+	
 
 	# All of our settings are stored in a single uniform buffer, certainly not the best decision, but it's easy to work with
 	var buffer_bytes : PackedByteArray = PackedFloat32Array(buffer).to_byte_array()
