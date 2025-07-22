@@ -113,7 +113,6 @@ func mod(vec: Vector3) -> Vector3:
 	
 func dist(a: Vector3, b: Vector3) -> float:
 	return ((a[0]-b[0])**2+(a[2]-b[2])**2)**0.5
-		
 
 func read_file(path : String) -> String: 
 	var f: String = FileAccess.get_file_as_string(path)

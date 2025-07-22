@@ -6,8 +6,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
 shader = ExtResource("2_vvh5c")
-shader_parameter/skyColor = Color(0.460947, 0.634449, 0.874821, 1)
-shader_parameter/horizonColor = Color(0.766496, 0.885587, 0.997783, 1)
+shader_parameter/skyColor = Color(0.277072, 0.466096, 0.72539, 1)
+shader_parameter/horizonColor = Color(1, 0.576471, 0.494118, 1)
+shader_parameter/sun_radius = 0.04
 
 [sub_resource type="Sky" id="Sky_jnlp7"]
 sky_material = SubResource("ShaderMaterial_28aoi")
@@ -20,7 +21,6 @@ sky = SubResource("Sky_jnlp7")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 tonemap_white = 1.68
-glow_enabled = true
 glow_normalized = true
 glow_intensity = 0.0
 glow_strength = 1.65
@@ -67,7 +67,7 @@ slope_threshold = Vector2(0.84, 0.98)
 low_slope_color = Color(0.192157, 0.25098, 0.152941, 1)
 high_slope_color = Color(0.16, 0.1, 0.1, 1)
 ambient_light = Color(0.697419, 0.760989, 0.804687, 1)
-fog_color = Color(0.217065, 0.320711, 0.500219, 1)
+fog_color = Color(0.110072, 0.175551, 0.289118, 1)
 min_fog_dist = 90.0
 max_fog_dist = 300.0
 metadata/_custom_type_script = "uid://7n58awc2ols0"
@@ -79,7 +79,7 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vvh5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.547044, 0.333968, -0.767599, 0.215023, 0.942263, 0.256721, 0.809017, -0.0246138, -0.58727, -0.428894, -1.52588e-05, -0.309891)
+transform = Transform3D(-0.392596, -0.0733558, -0.916781, 0.0637399, -0.996588, 0.0524459, 0.917499, 0.0378454, -0.395932, -473.923, 213.198, -178.542)
 light_volumetric_fog_energy = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
