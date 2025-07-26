@@ -106,7 +106,6 @@ var cam_pos : Vector3
 var cam_angle: Vector3
 
 var common: Common = Common.new()
-	
 
 func _init():
 	effect_callback_type = CompositorEffect.EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
