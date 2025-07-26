@@ -1,10 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://etaiuhwykkir"]
+[gd_scene load_steps=6 format=3 uid="uid://etaiuhwykkir"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_v62h7"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v62h7"]
+noise_type = 5
+domain_warp_enabled = true
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_qrja6"]
+invert = true
+noise = SubResource("FastNoiseLite_v62h7")
+
+[sub_resource type="FogMaterial" id="FogMaterial_co24e"]
+edge_fade = 0.237841
+density_texture = SubResource("NoiseTexture3D_qrja6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_feb8i"]
+next_pass = SubResource("FogMaterial_co24e")
+
+[sub_resource type="BoxMesh" id="BoxMesh_kj3p2"]
+material = SubResource("StandardMaterial3D_feb8i")
 
 [node name="Node3D" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0203179, 0.00926346, -0.0180328)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135162, 1.42365, 0.266674)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.745, 0, 0, 0, 2.745, 0, 0, 0, 2.745, -0.225801, 0.0269647, 0.0104263)
-mesh = SubResource("BoxMesh_v62h7")
+mesh = SubResource("BoxMesh_kj3p2")

@@ -1,7 +1,6 @@
 @tool
 class_name DrawTerrainMesh extends CompositorEffect
 
-
 ## Regenerate mesh data and recompile shaders TODO: Separate mesh generation and shader recompilation
 @export var regenerate : bool = true
 
@@ -106,19 +105,7 @@ var clear_colors := PackedColorArray([Color.DARK_BLUE])
 var cam_pos : Vector3
 var cam_angle: Vector3
 
-func mod(vec: Vector3) -> Vector3:
-	var module: Vector3
-	for i in 3:
-		if(vec[i] < 0): module[i] = -vec[i]
-		else: module[i] = vec[i]
-	return module
-	
-func dist(a: Vector3, b: Vector3) -> float:
-	return ((a[0]-b[0])**2+(a[2]-b[2])**2)**0.5
-
-func read_file(path : String) -> String: 
-	var f: String = FileAccess.get_file_as_string(path)
-	return f
+var common: Common = Common.new()
 	
 
 func _init():
@@ -150,9 +137,9 @@ func compile_shader(vertex_shader : String, fragment_shader : String) -> RID:
 	return shader
 
 func initialize_render(framebuffer_format : int):
-	var source_vertex: String = read_file("res://Scripts/Shaders/Vertex.txt")
-	var source_fragment: String = read_file("res://Scripts/Shaders/Fragment.txt")
-	var source_wire_fragment: String = read_file("res://Scripts/Shaders/WireFragment.txt")
+	var source_vertex: String = common.read_file("res://Scripts/Shaders/Vertex.txt")
+	var source_fragment: String = common.read_file("res://Scripts/Shaders/Fragment.txt")
+	var source_wire_fragment: String = common.read_file("res://Scripts/Shaders/WireFragment.txt")
 	p_shader = compile_shader(source_vertex, source_fragment)
 	p_wire_shader = compile_shader(source_vertex, source_wire_fragment)
 
@@ -276,8 +263,6 @@ func initialize_render_pipelines(framebuffer_format : int) -> void:
 
 	p_render_pipeline = rd.render_pipeline_create(p_shader, framebuffer_format, vertex_format, rd.RENDER_PRIMITIVE_TRIANGLES, raster_state, RDPipelineMultisampleState.new(), depth_state, blend)
 	p_wire_render_pipeline = rd.render_pipeline_create(p_wire_shader, framebuffer_format, vertex_format, rd.RENDER_PRIMITIVE_LINES, raster_state, RDPipelineMultisampleState.new(), depth_state, blend)
-
-
 
 func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	if not enabled: return
@@ -453,7 +438,3 @@ func _notification(what):
 			rd.free_rid(p_wire_index_array)
 		if p_wire_index_buffer.is_valid():
 			rd.free_rid(p_wire_index_buffer)
-
-# I am not going to explain the wireframe shader it's pretty straight forward okay thanks
-const source_wire_fragment = "
-		"
