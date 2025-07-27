@@ -2,10 +2,32 @@
 
 [ext_resource type="Script" uid="uid://btn8i0m76hx2y" path="res://Scripts/Camera/debug_camera_controller.gd" id="1_hekff"]
 [ext_resource type="Script" uid="uid://7n58awc2ols0" path="res://Scripts/draw_terrain.gd" id="2_pyidc"]
-[ext_resource type="Shader" uid="uid://dnhu2mdch2wln" path="res://Scripts/SkyShader.gdshader" id="2_vvh5c"]
+
+[sub_resource type="Shader" id="Shader_pyidc"]
+code = "shader_type sky;
+
+uniform vec3 skyColor : source_color;
+uniform vec3 horizonColor : source_color;
+uniform float sun_radius : hint_range(0.0, 0.5, 0.01) = 0.05;
+
+float getVec3Avg(vec3 a) {
+	return (a.r + a.g + a.b)/3.0;
+}
+
+void sky() {
+	float col = clamp(EYEDIR.y+0.04 / 0.2, 0.0, 1.0);
+	vec3 finalColor = mix(horizonColor, skyColor, col);
+	float diff = length(EYEDIR - LIGHT0_DIRECTION);
+	if(diff < sun_radius) finalColor += vec3(1.0, 1.0-diff, 0.27-diff);
+	finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
+	finalColor += -diff* vec3(0.9, 0.9, 0.1);
+	if(getVec3Avg(finalColor) < 0.1) finalColor = mix(skyColor, EYEDIR, 0.2);
+	COLOR = finalColor;
+}
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
-shader = ExtResource("2_vvh5c")
+shader = SubResource("Shader_pyidc")
 shader_parameter/skyColor = Color(0.277072, 0.466096, 0.72539, 1)
 shader_parameter/horizonColor = Color(1, 0.576471, 0.494118, 1)
 shader_parameter/sun_radius = 0.18

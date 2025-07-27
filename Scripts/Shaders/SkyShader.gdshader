@@ -14,6 +14,6 @@ void sky() {
 	float diff = length(EYEDIR - LIGHT0_DIRECTION);
 	if(diff < sun_radius) finalColor += vec3(1.0, 1.0-diff, 0.27-diff);
 	finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
-	//finalColor += -diff* vec3(0.3, 0.9, 0.27);
+	finalColor += -diff* vec3(0.3, 0.9, 0.27);
 	COLOR = finalColor;
 }
