@@ -2,35 +2,13 @@
 
 [ext_resource type="Script" uid="uid://btn8i0m76hx2y" path="res://Scripts/Camera/debug_camera_controller.gd" id="1_hekff"]
 [ext_resource type="Script" uid="uid://7n58awc2ols0" path="res://Scripts/draw_terrain.gd" id="2_pyidc"]
-
-[sub_resource type="Shader" id="Shader_pyidc"]
-code = "shader_type sky;
-
-uniform vec3 skyColor : source_color;
-uniform vec3 horizonColor : source_color;
-uniform float sun_radius : hint_range(0.0, 0.5, 0.01) = 0.05;
-
-float getVec3Avg(vec3 a) {
-	return (a.r + a.g + a.b)/3.0;
-}
-
-void sky() {
-	float col = clamp(EYEDIR.y+0.04 / 0.2, 0.0, 1.0);
-	vec3 finalColor = mix(horizonColor, skyColor, col);
-	float diff = length(EYEDIR - LIGHT0_DIRECTION);
-	if(diff < sun_radius) finalColor += vec3(1.0, 1.0-diff, 0.27-diff);
-	finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
-	finalColor += -diff* vec3(0.9, 0.9, 0.1);
-	if(getVec3Avg(finalColor) < 0.1) finalColor = mix(skyColor, EYEDIR, 0.2);
-	COLOR = finalColor;
-}
-"
+[ext_resource type="Shader" uid="uid://dnhu2mdch2wln" path="res://Scripts/Shaders/SkyShader.gdshader" id="2_vvh5c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
-shader = SubResource("Shader_pyidc")
-shader_parameter/skyColor = Color(0.277072, 0.466096, 0.72539, 1)
+shader = ExtResource("2_vvh5c")
+shader_parameter/skyColor = Color(0.403885, 0.439136, 0.690915, 1)
 shader_parameter/horizonColor = Color(1, 0.576471, 0.494118, 1)
-shader_parameter/sun_radius = 0.18
+shader_parameter/sun_radius = 0.08
 
 [sub_resource type="Sky" id="Sky_jnlp7"]
 sky_material = SubResource("ShaderMaterial_28aoi")
@@ -54,7 +32,6 @@ fog_density = 1.0
 fog_sky_affect = 0.642
 fog_depth_begin = 0.0
 fog_depth_end = 4000.0
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_emission_energy = 0.0
 volumetric_fog_gi_inject = 0.25
@@ -91,7 +68,7 @@ low_slope_color = Color(0.192157, 0.25098, 0.152941, 1)
 high_slope_color = Color(0.16, 0.1, 0.1, 1)
 ambient_light = Color(0.697419, 0.760989, 0.804687, 1)
 fog_color = Color(0.110072, 0.175551, 0.289118, 1)
-min_fog_dist = 20.0
+min_fog_dist = 90.0
 max_fog_dist = 300.0
 metadata/_custom_type_script = "uid://7n58awc2ols0"
 
@@ -102,7 +79,7 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vvh5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.392596, -0.0733558, -0.916781, 0.0637399, -0.996588, 0.0524459, 0.917499, 0.0378454, -0.395932, -473.923, 213.198, -178.542)
+transform = Transform3D(-0.185348, -0.977747, -0.098275, -0.928368, 0.141442, 0.343696, 0.322147, -0.154939, 0.933925, -473.923, 213.198, -178.542)
 light_volumetric_fog_energy = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
