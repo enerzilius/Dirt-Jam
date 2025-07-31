@@ -79,7 +79,7 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vvh5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.199928, -0.977219, 0.0712135, 0.490635, -0.0369355, 0.870582, 0.848119, -0.208993, -0.486842, 83.0788, 153.014, -69.4896)
+transform = Transform3D(-0.199928, -0.977219, 0.0712145, 0.976825, -0.193123, 0.0922821, 0.0764267, -0.0880139, -0.993183, 83.0788, 153.014, -69.4896)
 light_volumetric_fog_energy = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
