@@ -78,6 +78,7 @@ class_name DrawTerrainMesh extends CompositorEffect
 @export var fog_color : Color = Color(0.83, 0.88, 0.94)
 @export var min_fog_dist : float = 1.0
 @export var max_fog_dist : float = 100.0
+@export var fog_density: float = 1.0;
 
 var transform : Transform3D
 var light : DirectionalLight3D
@@ -355,8 +356,9 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(1.0)
 	buffer.push_back(min_fog_dist)
 	buffer.push_back(max_fog_dist)
+	buffer.push_back(fog_density)
 	buffer.push_back(1.0)
-	buffer.push_back(1.0)
+	
 	
 	if not cam:
 		var tree := Engine.get_main_loop() as SceneTree

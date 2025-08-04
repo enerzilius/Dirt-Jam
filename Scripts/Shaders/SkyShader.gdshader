@@ -16,7 +16,7 @@ void sky() {
 	if(diff < sun_radius) finalColor += vec3(1.0, 1.0-diff, 0.27-diff);
 	finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
 	float effect = clamp(LIGHT0_DIRECTION.y, 0.0, 1.0);
-	finalColor += -diff * vec3(0.27+effect*0.1, 0.2-effect*0.4, 0.35-effect);
-	finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
+	finalColor += -diff*0.2 * vec3(0.27+effect, 0.2-effect, 0.35-effect);
+	//finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
 	COLOR = finalColor;
 }
