@@ -12,6 +12,8 @@ Implements simple perlin noise based fractional brownian motion as a Godot compo
 ![alt text](Images/example_fog.png)
 	- Exponential fog woth density of 1.0 and max distance of 700:
 ![alt text](Images/example_exponential_fog.png)
+	- Exponential Squared Fog with the same configuration as the previously shown Exponential Fog:
+![alt text](Images/example_exp_sqrd_fog.png)
 - **Specular Highlights**:
 	-  The lighting model used was Blinn-Phong for a better approximation of lighting, based on *learnopengl*'s chapter about it, available on: [Advanced Lighting](https://learnopengl.com/Advanced-Lighting/Advanced-Lighting).
 ![alt text](Images/example-specular.gif)

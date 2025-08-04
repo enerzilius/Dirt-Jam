@@ -189,6 +189,14 @@ float exponentialFog() {
 	return fogFactor;
 }
 
+float exponentialSquaredFog() {
+	float dist = length(pos - _CamPos);
+	float distRatio = 4.0 * dist / _FogEnd;
+	float fogFactor = exp((-distRatio * _FogDensity)*(distRatio*_FogDensity));
+	
+	return fogFactor;
+}
+
 void main() {
 	// Recalculate initial noise sampling position same as vertex shader
 	vec3 noise_pos = (pos + vec3(_Offset.x, 0, _Offset.z)) / _Scale;
@@ -237,7 +245,7 @@ void main() {
 	
 	vec4 tempColor = pow(lit, vec4(2.2));
 	
-	float fogFactor = exponentialFog();
+	float fogFactor = linearFog();
 	tempColor = mix(_FogColor, tempColor, fogFactor);
 	
 	float brightness = dot(tempColor.rgb, vec3(0.2126, 0.7152, 0.0722));
