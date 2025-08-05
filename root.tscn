@@ -51,8 +51,8 @@ side_length = 400
 mesh_scale = 2.3
 wireframe = false
 noise_seed = 135
-zoom = 141.6
-offset = Vector3(0, -10, 0)
+zoom = 65.8
+offset = Vector3(0, 10, 0)
 gradient_rotation = -91.465
 octave_count = 13
 rotation = -26.99
@@ -71,6 +71,7 @@ fog_color = Color(0.167747, 0.114612, 0.230463, 1)
 min_fog_dist = 90.0
 max_fog_dist = 700.0
 fog_density = 1.0
+layered_top = 200.0
 metadata/_custom_type_script = "uid://7n58awc2ols0"
 
 [sub_resource type="Compositor" id="Compositor_1i1cu"]
@@ -80,12 +81,12 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vvh5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.148898, -0.214185, 0.965378, 0.242406, 0.954379, 0.174357, 0.958681, -0.208052, -0.194025, 83.8797, 153.014, -69.4896)
+transform = Transform3D(0.191888, -0.030603, 0.98094, 0.210024, 0.977639, -0.0105844, 0.958681, -0.208052, -0.194025, 83.8797, 153.014, -69.4896)
 light_volumetric_fog_energy = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1078, 116.923, 9.27751)
-fov = 72.2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09432, 122.559, -5.43762)
+fov = 82.1446
 script = ExtResource("1_hekff")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

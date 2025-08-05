@@ -28,6 +28,7 @@ layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
 	float _FogEnd;
 	float _FogDensity;
 	vec3 _CamPos;
+	float _LayeredFogTop;
 };
 
 layout(location = 2) in vec4 a_Color;

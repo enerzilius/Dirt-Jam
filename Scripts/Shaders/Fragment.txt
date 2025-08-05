@@ -28,6 +28,7 @@ layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
 	float _FogEnd;
 	float _FogDensity;
 	vec3 _CamPos;
+	float _LayeredFogTop;
 };
 
 // These are the variables that we expect to receive from the vertex shader
@@ -197,6 +198,43 @@ float exponentialSquaredFog() {
 	return fogFactor;
 }
 
+float layeredFog(){
+	vec3 camPos = vec3(_CamPos.x, 0.0, _CamPos.z);
+	vec3 pixPos = vec3(pos.x, 0.0, pos.z);
+	float deltaD = length(camPos - pixPos) / _FogEnd;
+	
+	float deltaY = 0.0f;
+	float densityIntegral = 0.0f;
+	
+	if(_CamPos.y > 135.0) { // Camera acima da neblina
+		if(pos.y < 135.0) { 
+			deltaY = (135.0 - pos.y) / 135.0;
+			densityIntegral = (deltaY*deltaY)/2;
+		}
+	}
+	else { // Camera abaixo da neblina
+		if(pos.y > 135.0) { 
+			deltaY = (135.0 - _CamPos.y) / 135.0;
+			densityIntegral = (deltaY*deltaY)/2;
+		} else {
+			deltaY = abs(_CamPos.y - pos.y) / 135.0;
+			float deltaCam = (135.0 - _CamPos.y) / 135.0;
+			float densityIntegralCamera = (deltaCam*deltaCam)/2;
+			
+			float deltaPixel = (135.0 - pos.y) / 135.0;
+			float densityIntegralPixel = (deltaPixel*deltaPixel)/2;
+			
+			densityIntegral = abs(densityIntegralCamera - densityIntegralPixel);
+		}
+	}
+	
+	float fogDensity = 0.0;
+	
+	if(deltaY != 0) fogDensity = (sqrt(1.0 + ((deltaD / deltaY ) * (deltaD / deltaY )))) * densityIntegral;
+	float fogFactor = exp(-fogDensity);
+	return fogFactor;
+}
+
 void main() {
 	// Recalculate initial noise sampling position same as vertex shader
 	vec3 noise_pos = (pos + vec3(_Offset.x, 0, _Offset.z)) / _Scale;
@@ -245,7 +283,7 @@ void main() {
 	
 	vec4 tempColor = pow(lit, vec4(2.2));
 	
-	float fogFactor = linearFog();
+	float fogFactor = layeredFog();
 	tempColor = mix(_FogColor, tempColor, fogFactor);
 	
 	float brightness = dot(tempColor.rgb, vec3(0.2126, 0.7152, 0.0722));

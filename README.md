@@ -8,11 +8,14 @@ Implements simple perlin noise based fractional brownian motion as a Godot compo
 ## Modifications List:
 - **Importable Shader Files**; 
 - **Fog**:
-	- Linear fog made on the fragment shader:
+	- All the fog applied here were done on the Fragment Shader and come from [OGLDEV](https://www.youtube.com/@OGLDEV)'s videos on the Topic;
+		- [Part 1](https://www.youtube.com/watch?v=oQksg57qsRA)
+		- [Part 2](https://www.youtube.com/watch?v=BYbIs1C7rkM)
+	- **Linear Fog**:
 ![alt text](Images/example_fog.png)
-	- Exponential fog woth density of 1.0 and max distance of 700:
+	- **Exponential Fog**:
 ![alt text](Images/example_exponential_fog.png)
-	- Exponential Squared Fog with the same configuration as the previously shown Exponential Fog:
+	- **Exponential Squared Fog**:
 ![alt text](Images/example_exp_sqrd_fog.png)
 - **Specular Highlights**:
 	-  The lighting model used was Blinn-Phong for a better approximation of lighting, based on *learnopengl*'s chapter about it, available on: [Advanced Lighting](https://learnopengl.com/Advanced-Lighting/Advanced-Lighting).
