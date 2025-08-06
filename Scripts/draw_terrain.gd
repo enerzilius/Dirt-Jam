@@ -371,12 +371,16 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 		cam_pos = cam.position
 		cam_angle = cam.rotation_degrees.normalized()
 		
+	print(cam_pos)
+		
 	buffer.push_back(cam_pos.x)
 	buffer.push_back(cam_pos.y)
 	buffer.push_back(cam_pos.z)
 	buffer.push_back(1.0)
+	print(layered_top)
 	buffer.push_back(layered_top)
 	buffer.push_back(1.0)
+	
 
 	# All of our settings are stored in a single uniform buffer, certainly not the best decision, but it's easy to work with
 	var buffer_bytes : PackedByteArray = PackedFloat32Array(buffer).to_byte_array()

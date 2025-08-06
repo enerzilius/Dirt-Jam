@@ -17,6 +17,6 @@ void sky() {
 	finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
 	float effect = clamp(LIGHT0_DIRECTION.y, 0.0, 1.0);
 	finalColor += -diff*0.2 * vec3(0.27+effect, 0.2-effect, 0.35-effect);
-	//finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
+	finalColor = clamp(finalColor, vec3(0.0),vec3(1.0));
 	COLOR = finalColor;
 }

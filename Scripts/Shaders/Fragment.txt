@@ -206,22 +206,21 @@ float layeredFog(){
 	float deltaY = 0.0f;
 	float densityIntegral = 0.0f;
 	
-	if(_CamPos.y > 135.0) { // Camera acima da neblina
-		if(pos.y < 135.0) { 
-			deltaY = (135.0 - pos.y) / 135.0;
-			densityIntegral = (deltaY*deltaY)/2;
+	if(_CamPos.y > 20) { // Camera acima da neblina
+		if(pos.y < 20) { 
+			deltaY = (20 - pos.y) / 70;
+			densityIntegral = deltaY*deltaY*0.5;
 		}
-	}
-	else { // Camera abaixo da neblina
-		if(pos.y > 135.0) { 
-			deltaY = (135.0 - _CamPos.y) / 135.0;
-			densityIntegral = (deltaY*deltaY)/2;
+	} else { // Camera abaixo da neblina
+		if(pos.y > _LayeredFogTop) { 
+			deltaY = (_LayeredFogTop - _CamPos.y) / _LayeredFogTop;
+			densityIntegral = deltaY*deltaY/2;
 		} else {
-			deltaY = abs(_CamPos.y - pos.y) / 135.0;
-			float deltaCam = (135.0 - _CamPos.y) / 135.0;
+			deltaY = abs(_CamPos.y - pos.y) / _LayeredFogTop;
+			float deltaCam = (_LayeredFogTop - _CamPos.y) / _LayeredFogTop;
 			float densityIntegralCamera = (deltaCam*deltaCam)/2;
 			
-			float deltaPixel = (135.0 - pos.y) / 135.0;
+			float deltaPixel = (_LayeredFogTop - pos.y) / _LayeredFogTop;
 			float densityIntegralPixel = (deltaPixel*deltaPixel)/2;
 			
 			densityIntegral = abs(densityIntegralCamera - densityIntegralPixel);

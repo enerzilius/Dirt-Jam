@@ -17,6 +17,8 @@ Implements simple perlin noise based fractional brownian motion as a Godot compo
 ![alt text](Images/example_exponential_fog.png)
 	- **Exponential Squared Fog**:
 ![alt text](Images/example_exp_sqrd_fog.png)
+	- **Layered Fog**:
+![alt text](Images/example_layered_fog.png)
 - **Specular Highlights**:
 	-  The lighting model used was Blinn-Phong for a better approximation of lighting, based on *learnopengl*'s chapter about it, available on: [Advanced Lighting](https://learnopengl.com/Advanced-Lighting/Advanced-Lighting).
 ![alt text](Images/example-specular.gif)

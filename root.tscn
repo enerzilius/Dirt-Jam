@@ -52,7 +52,7 @@ mesh_scale = 2.3
 wireframe = false
 noise_seed = 135
 zoom = 65.8
-offset = Vector3(0, 10, 0)
+offset = Vector3(0, 70, 0)
 gradient_rotation = -91.465
 octave_count = 13
 rotation = -26.99
@@ -67,11 +67,11 @@ slope_threshold = Vector2(0.84, 0.98)
 low_slope_color = Color(0.129412, 0.282353, 0.145098, 1)
 high_slope_color = Color(0.16, 0.1, 0.1, 1)
 ambient_light = Color(0.697419, 0.760989, 0.804687, 1)
-fog_color = Color(0.167747, 0.114612, 0.230463, 1)
+fog_color = Color(0.168627, 0.113725, 0.231373, 1)
 min_fog_dist = 90.0
-max_fog_dist = 700.0
+max_fog_dist = 100.0
 fog_density = 1.0
-layered_top = 200.0
+layered_top = 70.0
 metadata/_custom_type_script = "uid://7n58awc2ols0"
 
 [sub_resource type="Compositor" id="Compositor_1i1cu"]
