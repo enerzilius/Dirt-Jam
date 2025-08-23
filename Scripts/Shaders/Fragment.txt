@@ -201,6 +201,7 @@ float exponentialSquaredFog() {
 float layeredFog(){
 	vec3 camPos = vec3(_CamPos.x, 0.0, _CamPos.z);
 	vec3 pixPos = vec3(pos.x, 0.0, pos.z);
+	
 	float deltaD = length(camPos - pixPos) / _FogEnd;
 	
 	float deltaY = 0.0f;
@@ -208,7 +209,7 @@ float layeredFog(){
 	
 	if(_CamPos.y > _LayeredFogTop) { // Camera acima da neblina
 		if(pos.y < _LayeredFogTop) { 
-			deltaY = (_LayeredFogTop - pos.y) / 100;
+			deltaY = (_LayeredFogTop - pos.y) / _LayeredFogTop;
 			densityIntegral = deltaY*deltaY*0.5;
 		}
 	} else { // Camera abaixo da neblina
