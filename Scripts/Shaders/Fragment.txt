@@ -28,6 +28,7 @@ layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
 	float _FogEnd;
 	float _FogDensity;
 	float _LayeredFogTop;
+	//float _FogTime;
 	vec3 _CamPos;
 };
 
@@ -234,6 +235,23 @@ float layeredFog(){
 	float fogFactor = exp(-fogDensity);
 	return fogFactor;
 }
+
+//float animatedFog(){
+//	float dist = length(pos - _CamPos);
+//	float distRatio = dist / _FogEnd;
+//	float exponentialFogFactor = exp(-distRatio * _FogDensity);
+//	
+//	vec3 coords = pos * 0.05;
+//	
+//	float animationFactor = -(1.0 + 
+//							  0.5 * cos(5.0 * PI * coords.z + _FogTime) +
+//							  0.2 * cos(7.0 * PI * (coords.z + 0.1 * coords.x)) + 
+//							  0.2 * cos(5.0 * PI * (coords.z - 0.05 * coords.x)) + 
+//							  0.1 * cos(PI * coords.x) * cos(PI * coords.z / 2.0));
+//							
+//	float fogFactor = exponentialFogFactor + (dist/_FogEnd) * animationFactor;
+//	return fogFactor;
+//}
 
 void main() {
 	// Recalculate initial noise sampling position same as vertex shader
