@@ -27,8 +27,8 @@ layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
 	float _FogStart;
 	float _FogEnd;
 	float _FogDensity;
-	vec3 _CamPos;
 	float _LayeredFogTop;
+	vec3 _CamPos;
 };
 
 // These are the variables that we expect to receive from the vertex shader
@@ -206,9 +206,9 @@ float layeredFog(){
 	float deltaY = 0.0f;
 	float densityIntegral = 0.0f;
 	
-	if(_CamPos.y > 20) { // Camera acima da neblina
-		if(pos.y < 20) { 
-			deltaY = (20 - pos.y) / 70;
+	if(_CamPos.y > _LayeredFogTop) { // Camera acima da neblina
+		if(pos.y < _LayeredFogTop) { 
+			deltaY = (_LayeredFogTop - pos.y) / 100;
 			densityIntegral = deltaY*deltaY*0.5;
 		}
 	} else { // Camera abaixo da neblina

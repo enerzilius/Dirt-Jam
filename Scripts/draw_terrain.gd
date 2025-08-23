@@ -79,7 +79,7 @@ class_name DrawTerrainMesh extends CompositorEffect
 @export var min_fog_dist : float = 1.0
 @export var max_fog_dist : float = 100.0
 @export var fog_density: float = 1.0;
-@export var layered_top: float = 150.0;
+@export var layered_top: float = 20.0;
 
 var transform : Transform3D
 var light : DirectionalLight3D
@@ -358,8 +358,7 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(min_fog_dist)
 	buffer.push_back(max_fog_dist)
 	buffer.push_back(fog_density)
-	buffer.push_back(1.0)
-	
+	buffer.push_back(layered_top)
 	
 	if not cam:
 		var tree := Engine.get_main_loop() as SceneTree
@@ -371,15 +370,11 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 		cam_pos = cam.position
 		cam_angle = cam.rotation_degrees.normalized()
 		
-	print(cam_pos)
-		
 	buffer.push_back(cam_pos.x)
 	buffer.push_back(cam_pos.y)
 	buffer.push_back(cam_pos.z)
 	buffer.push_back(1.0)
-	print(layered_top)
-	buffer.push_back(layered_top)
-	buffer.push_back(1.0)
+
 	
 
 	# All of our settings are stored in a single uniform buffer, certainly not the best decision, but it's easy to work with
