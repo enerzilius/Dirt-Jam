@@ -238,7 +238,7 @@ float layeredFog(){
 
 float animatedFog(){
 	float dist = length(pos - _CamPos);
-	float exponentialFogFactor = layeredFog();
+	float exponentialFogFactor = exponentialFog();
 	
 	vec3 coords = pos * 0.008;
 	
@@ -247,8 +247,10 @@ float animatedFog(){
 							  0.2 * cos(7.0 * PI * (coords.z + 0.1 * coords.x)) + 
 							  0.2 * cos(5.0 * PI * (coords.z - 0.05 * coords.x)) + 
 							  0.1 * cos(PI * coords.x) * cos(PI * coords.z / 2.0));
+
+	clamp(animationFactor, 0.0, 1.0);
 							
-	float fogFactor = exponentialFogFactor + (dist/_FogEnd) * animationFactor;
+	float fogFactor = clamp(exponentialFogFactor + (dist/_FogEnd) * animationFactor, -0.6, 1.0);
 	return fogFactor;
 }
 

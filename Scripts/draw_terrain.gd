@@ -363,11 +363,10 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(layered_top)
 	
 	var current_time: float = (Time.get_unix_time_from_system() - start_time)/1000
-	var fog_time: float = 0.035 * (randf() / 10) * current_time
-	print(fog_time)
-	buffer.push_back(0.0)
+	var fog_time: float = 1010 * current_time
 	buffer.push_back(fog_time)
-	buffer.push_back(0.0)
+	buffer.push_back(fog_time)
+	buffer.push_back(fog_time)
 	buffer.push_back(fog_time)
 	
 	if not cam:
