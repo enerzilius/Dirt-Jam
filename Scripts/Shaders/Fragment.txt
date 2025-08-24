@@ -238,9 +238,9 @@ float layeredFog(){
 
 float animatedFog(){
 	float dist = length(pos - _CamPos);
-	float exponentialFogFactor = exponentialFog();
+	float exponentialFogFactor = layeredFog();
 	
-	vec3 coords = pos * 0.05;
+	vec3 coords = pos * 0.008;
 	
 	float animationFactor = -(1.0 + 
 							  0.5 * cos(5.0 * PI * coords.z + _FogTime) +
@@ -300,7 +300,7 @@ void main() {
 	
 	vec4 tempColor = pow(lit, vec4(2.2));
 	
-	float fogFactor = layeredFog();
+	float fogFactor = animatedFog();
 	tempColor = mix(_FogColor, tempColor, fogFactor);
 	
 	float brightness = dot(tempColor.rgb, vec3(0.2126, 0.7152, 0.0722));
