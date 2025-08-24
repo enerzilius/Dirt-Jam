@@ -109,7 +109,7 @@ var cam_angle: Vector3
 
 var common: Common = Common.new()
 
-#var start_time: float = Time.get_unix_time_from_system()
+var start_time: float = Time.get_unix_time_from_system()
 
 func _init():
 	effect_callback_type = CompositorEffect.EFFECT_CALLBACK_TYPE_POST_TRANSPARENT
@@ -362,9 +362,12 @@ func _render_callback(_effect_callback_type : int, render_data : RenderData):
 	buffer.push_back(fog_density)
 	buffer.push_back(layered_top)
 	
-	#var current_time: float = (Time.get_unix_time_from_system() - start_time)/1000
-	#var fog_time: float = 0.000035 * (randf() / 10) * current_time
-	#buffer.push_back(fog_time)
+	var current_time: float = (Time.get_unix_time_from_system() - start_time)/1000
+	var fog_time: float = 0.000035 * (randf() / 10) * current_time
+	buffer.push_back(fog_time)
+	buffer.push_back(1.0)
+	buffer.push_back(1.0)
+	buffer.push_back(1.0)
 	
 	if not cam:
 		var tree := Engine.get_main_loop() as SceneTree

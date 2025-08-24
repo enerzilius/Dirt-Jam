@@ -28,7 +28,7 @@ layout(set = 0, binding = 0, std140) uniform UniformBufferObject {
 	float _FogEnd;
 	float _FogDensity;
 	float _LayeredFogTop;
-	//float _FogTime;
+	float _FogTime;
 	vec3 _CamPos;
 };
 
