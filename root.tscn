@@ -6,9 +6,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_28aoi"]
 shader = ExtResource("2_vvh5c")
-shader_parameter/skyColor = Color(0.330737, 0.544605, 0.999987, 1)
-shader_parameter/horizonColor = Color(0.930634, 0, 0.252046, 1)
-shader_parameter/sun_radius = 0.08
+shader_parameter/skyColor = Color(0.129564, 0.387872, 0.99994, 1)
+shader_parameter/horizonColor = Color(0.83349, 0.813524, 0.80108, 1)
+shader_parameter/sun_radius = 0.03
 
 [sub_resource type="Sky" id="Sky_jnlp7"]
 sky_material = SubResource("ShaderMaterial_28aoi")
@@ -51,7 +51,7 @@ side_length = 400
 mesh_scale = 2.3
 wireframe = false
 noise_seed = 135
-zoom = 65.8
+zoom = 89.0
 offset = Vector3(0, 70, 0)
 gradient_rotation = -91.465
 octave_count = 13
@@ -67,11 +67,11 @@ slope_threshold = Vector2(0.84, 0.98)
 low_slope_color = Color(0.129412, 0.282353, 0.145098, 1)
 high_slope_color = Color(0.16, 0.1, 0.1, 1)
 ambient_light = Color(0.697419, 0.760989, 0.804687, 1)
-fog_color = Color(0.168627, 0.113725, 0.231373, 1)
+fog_color = Color(0.316373, 0.313211, 0.316373, 1)
 min_fog_dist = 90.0
-max_fog_dist = 500.0
+max_fog_dist = 100000.0
 fog_density = 1.0
-layered_top = 20.0
+layered_top = 35.0
 metadata/_custom_type_script = "uid://7n58awc2ols0"
 
 [sub_resource type="Compositor" id="Compositor_1i1cu"]
@@ -81,7 +81,7 @@ compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_vvh5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.766693, -1.66313, -1.06099)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.191888, -0.030603, 0.98094, 0.210024, 0.977639, -0.0105844, 0.958681, -0.208052, -0.194025, 83.8797, 153.014, -69.4896)
+transform = Transform3D(-0.280345, -0.806818, -0.52005, 0.0483438, -0.552955, 0.831808, 0.958681, -0.208051, -0.194023, 83.8797, 153.014, -69.4896)
 light_volumetric_fog_energy = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
