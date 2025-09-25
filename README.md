@@ -8,7 +8,7 @@ Implements simple perlin noise based fractional brownian motion as a Godot compo
 ## Modifications List:
 - **Importable Shader Files**; 
 - **Fog**:
-	- All the fog applied here were done on the Fragment Shader and come from [OGLDEV](https://www.youtube.com/@OGLDEV)'s videos on the Topic;
+	- All the fog applied here were done on the Fragment Shader and come from [OGLDEV](https://www.youtube.com/@OGLDEV)'s videos on the Topic, which in turn were based on the book [*ShaderX2 Introductions & Tutorials With DirectX 9*](https://enjoyphysics.cn/文件/soft/Hlsl/Introductions_and_Tutorials_with_DirectX_9.pdf#page=174);
 		- [Part 1](https://www.youtube.com/watch?v=oQksg57qsRA)
 		- [Part 2](https://www.youtube.com/watch?v=BYbIs1C7rkM)
 	- **Linear Fog**:
